@@ -1,0 +1,26 @@
+<h1>Bill ID: {{bill['id']}}</h1>
+
+<p>due: {{bill['due_date']}}</p>
+
+<p>amount: {{bill['amount']}}</p>
+
+
+<h1>Items</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>amount</th>
+        <th>provider</th>
+    </tr>
+
+    @for (billItem of bill['bill_items']; track billItem.id) {
+        <tr>
+            <td>{{billItem.id}}</td>
+            <td>{{billItem.amount}}</td>
+            <td>{{billItem.bill_issuer.name}}</td>
+        </tr>
+    }
+</table>
+
+
+<a routerLink="/addBill/{{bill['id']}}">Edit</a>

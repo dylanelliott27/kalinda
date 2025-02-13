@@ -1,0 +1,30 @@
+
+
+
+<form [formGroup]="billForm" (ngSubmit)="onSubmit()">
+
+    <label for="">Due date:</label>
+    <input type="date" formControlName="due_date">
+
+    <div formArrayName="bill_items">
+        <div *ngFor="let billItem of billItems.controls; let i=index">
+            <div [formGroupName]="i">
+                <label for="">amount</label>
+                <input type="text" formControlName="amount" (change)="amountChange(billItem)">
+    
+                <label for="">Provider</label>
+                <select name="" id="" formControlName="bill_issuer_id" (change)="providerChange(billItem)">
+                    <option *ngFor="let provider of providers" [value]="provider.id">{{provider.name}}</option>
+                </select>
+            </div>
+            <button type="button" (click)="deleteBillItem(i, billItem)">delete item</button>
+            @if(!billItem.get('id')?.value && bill['id']) {
+                <button type="button" (click)="saveNewBillItem(i, billItem)">save item</button>
+            }
+        </div>
+    </div>
+    <button type="button" (click)="addBillItem()">add bill item</button>
+    @if (!bill['id']) {
+        <button>submit</button>
+    }
+</form>

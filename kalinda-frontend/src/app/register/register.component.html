@@ -1,0 +1,13 @@
+<h1>register</h1>
+<form (submit)="register()">
+<label for="">name</label>
+<input name="name" [(ngModel)]="name" type="text">
+
+<label for="">email</label>
+<input name="email" type="text" [(ngModel)]="email">
+
+<label for="">password</label>
+<input name="password" [(ngModel)]="password" type="text">
+
+<button type="submit">submit</button>
+</form>

@@ -1,0 +1,9 @@
+@for (bill of bills; track bill.id) {
+    <a routerLink="/bill/{{bill.id}}">
+        <p>{{bill.id}}</p>
+    </a>
+        <p>{{bill.created_at}}</p>
+        <p>{{bill.updated_at}}</p>
+        <p>${{bill.amount}}</p>
+        <p>{{bill.due_date}}</p>
+}

@@ -1,0 +1,13 @@
+@if (failedLogin) {
+    <h1>Error encountered whilst signing in</h1>
+}
+
+<h1>login</h1>
+<form (submit)="login()">
+<label for="">email</label>
+<input type="text" name="loginEmail" [(ngModel)]="loginEmail">
+
+<label for="">password</label>
+<input type="text" name="loginPassword" [(ngModel)]="loginPassword">
+<button type="submit">login</button>
+</form>
