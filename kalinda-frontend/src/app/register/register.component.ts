@@ -18,6 +18,6 @@ export class RegisterComponent {
   constructor(private authService: AuthService) {}
 
   register() {
-    return this.authService.register(this.email, this.password, this.name);
+    return this.authService.register(this.email, this.password, this.name).subscribe(data => {console.log(data)});
   }
 }

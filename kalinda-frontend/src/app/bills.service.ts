@@ -28,40 +28,40 @@ export class BillsService {
 
   getBills() : Observable<apiResStructure>
   {
-    return this.http.get<apiResStructure>("//localhost:8000/api/bills", {withCredentials : true});
+    return this.http.get<apiResStructure>("/api/bills", {withCredentials : true});
   }
 
   getBillWithItems(billId: number)
   {
-    return this.http.get("//localhost:8000/api/bills/" + billId, {withCredentials: true});
+    return this.http.get("/api/bills/" + billId, {withCredentials: true});
   }
 
   getAllIssuers()
   {
-    return this.http.get("//localhost:8000/api/bill_issuers", {withCredentials: true});
+    return this.http.get("/api/bill_issuers", {withCredentials: true});
   }
 
   addIssuer(name: string)
   {
-    return this.http.post("//localhost:8000/api/bill_issuers", {name}, {withCredentials: true});
+    return this.http.post("/api/bill_issuers", {name}, {withCredentials: true});
   }
 
   addBill(bill : Record<any, any>)
   {
-    return this.http.post("//localhost:8000/api/bills", {...bill}, {withCredentials : true});
+    return this.http.post("/api/bills", {...bill}, {withCredentials : true});
   }
 
   deleteBillItem(id : number)
   {
-    return this.http.delete("//localhost:8000/api/bill_items/" + id, {withCredentials: true});
+    return this.http.delete("/api/bill_items/" + id, {withCredentials: true});
   }
 
   updateBillItem(id : number, data : Record<any, any>) {
-    return this.http.put("//localhost:8000/api/bill_items/" + id, data, {withCredentials: true});
+    return this.http.put("/api/bill_items/" + id, data, {withCredentials: true});
   }
 
   addBillItem(data : any)
   {
-    return this.http.post("//localhost:8000/api/bill_items", data, {withCredentials : true});
+    return this.http.post("/api/bill_items", data, {withCredentials : true});
   }
 }

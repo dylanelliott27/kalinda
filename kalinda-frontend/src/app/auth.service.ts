@@ -11,26 +11,26 @@ export class AuthService {
 
   isAuthenticated()
   {
-    return this.http.get('//localhost:8000/api/getAuthStatus', { observe: "response", withCredentials: true, headers : {'Accept' : 'application/json'}});
+    return this.http.get('/api/getAuthStatus', { observe: "response", withCredentials: true, headers : {'Accept' : 'application/json'}});
   }
 
   getCsrfToken()
   {
-    return this.http.get('//localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    return this.http.get('/api/sanctum/csrf-cookie', { withCredentials: true })
   }
 
   login(email: string, password: string)
   {
-    return this.getCsrfToken().pipe(concatMap(csrfResponse => this.http.post('//localhost:8000/api/login', { email, password }, { observe: "response", withCredentials: true })));
+    return this.getCsrfToken().pipe(concatMap(csrfResponse => this.http.post('/api/login', { email, password }, { observe: "response", withCredentials: true })));
   }
 
   register(email: string, password: string, name: string)
   {
-    return this.http.post('//localhost:8000/api/register', { email, password, name }, { withCredentials: true })
+    return this.http.post('/api/register', { email, password, name }, { withCredentials: true })
   }
 
   logout()
   {
-    return this.http.post('//localhost:8000/api/logout', null, { withCredentials: true });
+    return this.http.post('/api/logout', null, { withCredentials: true });
   }
 }

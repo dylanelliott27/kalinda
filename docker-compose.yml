@@ -1,0 +1,36 @@
+services:
+  angular:
+    image: "trion/ng-cli"
+    ports:
+      - "4200:4200"
+    working_dir: /app
+    volumes:
+      - ./kalinda-frontend/:/app
+    command: sh -c "npm install && ng serve --host 0.0.0.0"
+  laravel:
+    image: "bitnami/laravel"
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      LARAVEL_DATABASE_HOST: db
+      LARAVEL_DATABASE_NAME: kalinda
+      LARAVEL_DATABASE_USER: root
+      LARAVEL_DATABASE_PASSWORD: kalinda
+    # command: "composer install"
+  # composer:
+  #   image: "composer"
+  #   volumes:
+  #     - ./:/app
+  #   command: sh -c "composer install && php artisan migrate"
+  db:
+    image: "mysql"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: kalinda
+      MYSQL_DATABASE: kalinda
+volumes:
+  mysql_data:
