@@ -31,7 +31,7 @@ services:
       LARAVEL_DATABASE_NAME: kalinda
       LARAVEL_DATABASE_USER: root
       LARAVEL_DATABASE_PASSWORD: kalinda
-    command: "php artisan migrate"
+    command: sh -c "php artisan key:generate && php artisan migrate"
   composer:
     image: "composer"
     volumes:
