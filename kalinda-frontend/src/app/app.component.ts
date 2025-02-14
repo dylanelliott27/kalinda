@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'kalinda-frontend';
+
+  constructor(private authService : AuthService) {}
+  
+  logout()
+  {
+    this.authService.logout().subscribe();
+  }
 }
