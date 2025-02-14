@@ -6,7 +6,7 @@ services:
     working_dir: /app
     volumes:
       - ./kalinda-frontend/:/app
-    command: sh -c "npm install && ng serve --host 0.0.0.0"
+    command: ng serve --host 0.0.0.0
   laravel:
     image: "bitnami/laravel"
     ports:
@@ -19,12 +19,35 @@ services:
       LARAVEL_DATABASE_NAME: kalinda
       LARAVEL_DATABASE_USER: root
       LARAVEL_DATABASE_PASSWORD: kalinda
-    # command: "composer install"
-  # composer:
-  #   image: "composer"
-  #   volumes:
-  #     - ./:/app
-  #   command: sh -c "composer install && php artisan migrate"
+  artisan:
+    image: "bitnami/laravel"
+    working_dir: /app
+    profiles:
+      - dependencies
+    volumes:
+      - ./:/app
+    environment:
+      LARAVEL_DATABASE_HOST: db
+      LARAVEL_DATABASE_NAME: kalinda
+      LARAVEL_DATABASE_USER: root
+      LARAVEL_DATABASE_PASSWORD: kalinda
+    command: "php artisan migrate"
+  composer:
+    image: "composer"
+    volumes:
+      - ./:/app
+    profiles:
+      - dependencies
+    working_dir: /app
+    command: composer install
+  node:
+    image: "node"
+    profiles:
+      - dependencies
+    volumes:
+      - ./kalinda-frontend/:/app
+    working_dir: /app
+    command: npm install
   db:
     image: "mysql"
     volumes:
